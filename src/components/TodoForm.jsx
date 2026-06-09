@@ -5,7 +5,7 @@ function TodoForm({ onAdd }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Submit con valor:", input);
+    console.log("Submit con valor: ", input);
     onAdd(input);
     setInput("");
   };

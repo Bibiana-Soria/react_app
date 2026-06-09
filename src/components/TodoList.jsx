@@ -1,5 +1,5 @@
 function TodoList({ todos, onToggle, onDelete }) {
-  console.info("Renderizando lista con", todos.length, "tareas");
+  console.info("Cargando lista con", todos.length, "tareas");
 
   if (todos.length === 0) {
     return <p>No hay tareas aún. ¡Agrega una!</p>;

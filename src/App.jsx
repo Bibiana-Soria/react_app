@@ -7,7 +7,7 @@ function App() {
   const [todos, setTodos] = useState([]);
 
   const addTodo = (text) => {
-    console.info("Intentando agregar tarea...");
+    console.info("agregando tarea...");
 
     if (!text.trim()) {
       console.error("Error: el texto está vacío");
@@ -34,7 +34,7 @@ function App() {
       console.error("No se encontró tarea con id:", id);
       return;
     }
-    console.warn("Eliminando tarea:", tarea);
+    console.info("Eliminando tarea:", tarea);
     setTodos((prev) => prev.filter((todo) => todo.id !== id));
   };
 
