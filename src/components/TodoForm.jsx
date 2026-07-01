@@ -2,23 +2,44 @@ import { useState } from "react";
 
 function TodoForm({ onAdd }) {
   const [input, setInput] = useState("");
+  const [dueDate, setDueDate] = useState("");
+  const [error, setError] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Submit con valor: ", input);
-    onAdd(input);
+    const value = input.trim();
+
+    if (!value) {
+      setError("Escribe una tarea para continuar.");
+      return;
+    }
+
+    setError("");
+    onAdd(value, dueDate);
     setInput("");
+    setDueDate("");
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="todo-form" onSubmit={handleSubmit} noValidate>
+      <label className="sr-only" htmlFor="todo-input">
+        Nueva tarea
+      </label>
       <input
+        id="todo-input"
         type="text"
-        placeholder="Escribe una tarea..."
+        placeholder="Añade una nueva tarea..."
         value={input}
         onChange={(e) => setInput(e.target.value)}
       />
-      <button type="submit">Agregar</button>
+      <input
+        type="date"
+        value={dueDate}
+        onChange={(e) => setDueDate(e.target.value)}
+        aria-label="Fecha de vencimiento"
+      />
+      <button type="submit">Agregar tarea</button>
+      {error ? <p className="form-error">{error}</p> : null}
     </form>
   );
 }
